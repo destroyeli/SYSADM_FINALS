@@ -1,6 +1,24 @@
 <?php
 include "config/database.php";
 
+if(session_status() == PHP_SESSION_NONE){
+    session_start();
+}
+
+if(!isset($_SESSION['admin'])){
+
+header("Location: login.php");
+exit();
+
+}
+
+include "config/database.php";
+
+$sql = "SELECT * FROM employees";
+
+$result = mysqli_query($conn,$sql);
+
+
 $sql = "SELECT * FROM employees";
 $result = mysqli_query($conn, $sql);
 ?>
