@@ -1,0 +1,133 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family:
+    Segoe UI,
+    Arial,
+    sans-serif;
+}
+
+body {
+  background: #edf2f7;
+}
+
+.wrapper {
+  display: flex;
+
+  min-height: 100vh;
+}
+
+.sidebar {
+  width: 250px;
+
+  background: #0f766e;
+
+  color: white;
+
+  padding: 25px;
+}
+
+.logo {
+  text-align: center;
+
+  margin-bottom: 40px;
+}
+
+.logo h3 {
+  font-weight: bold;
+}
+
+.logo p {
+  font-size: 14px;
+
+  opacity: 0.8;
+}
+
+.sidebar ul {
+  list-style: none;
+
+  padding: 0;
+}
+
+.sidebar li {
+  margin: 15px 0;
+}
+
+.sidebar a {
+  color: white;
+
+  text-decoration: none;
+
+  display: block;
+
+  padding: 12px;
+
+  border-radius: 8px;
+
+  transition: 0.3s;
+}
+
+.sidebar a:hover {
+  background: #115e59;
+}
+
+.content {
+  flex: 1;
+
+  padding: 30px;
+}
+
+.card {
+  border: none;
+
+  border-radius: 15px;
+
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+.dashboard-card {
+  padding: 35px;
+
+  text-align: center;
+
+  cursor: pointer;
+
+  transition: 0.3s;
+}
+
+.dashboard-card:hover {
+  transform: translateY(-5px);
+}
+
+.dashboard-icon {
+  font-size: 55px;
+
+  color: #0f766e;
+
+  margin-bottom: 15px;
+}
+
+table {
+  background: white;
+}
+
+.page-title {
+  margin-bottom: 25px;
+}
+
+.topbar {
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  margin-bottom: 30px;
+}
+
+.username {
+  font-weight: bold;
+
+  color: #0f766e;
+}

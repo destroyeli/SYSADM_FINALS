@@ -1,82 +1,66 @@
 <?php
+
 session_start();
 
-if(isset($_SESSION['admin'])){
+if (isset($_SESSION['admin_id'])) {
+
     header("Location: dashboard.php");
+
     exit();
+
 }
+
 ?>
 
 <!DOCTYPE html>
-<html>
+
+<html lang="en">
 
 <head>
 
-<title>Admin Login</title>
+<meta charset="UTF-8">
 
-<link rel="stylesheet" href="css/style.css">
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>SYSADM Finals Login</title>
+
+<link
+href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+rel="stylesheet">
 
 <style>
 
 body{
 
-display:flex;
-justify-content:center;
-align-items:center;
+background:#f4f6f9;
+
 height:100vh;
-background:#f2f2f2;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
 
 }
 
-.login-box{
+.card{
 
-width:350px;
-background:white;
-padding:30px;
-border-radius:10px;
-box-shadow:0 0 20px rgba(0,0,0,.2);
+width:420px;
 
-}
-
-.login-box h2{
-
-text-align:center;
-margin-bottom:25px;
-
-}
-
-input{
-
-width:100%;
-padding:12px;
-margin-bottom:15px;
-font-size:16px;
-
-}
-
-button{
-
-width:100%;
-padding:12px;
-background:#0f766e;
-color:white;
 border:none;
-cursor:pointer;
-font-size:16px;
+
+border-radius:15px;
+
+box-shadow:0 10px 30px rgba(0,0,0,.15);
 
 }
 
-button:hover{
+.logo{
 
-background:#115e59;
-
-}
-
-.error{
-
-color:red;
-text-align:center;
-margin-bottom:15px;
+font-size:60px;
 
 }
 
@@ -86,15 +70,45 @@ margin-bottom:15px;
 
 <body>
 
-<div class="login-box">
+<div class="card">
 
-<h2>Administrator Login</h2>
+<div class="card-body p-5">
+
+<div class="text-center mb-3">
+
+<div class="logo">
+
+👨‍💼
+
+</div>
+
+<h3>
+
+Employee Management System
+
+</h3>
+
+<p class="text-muted">
+
+Administrator Login
+
+</p>
+
+</div>
 
 <?php
 
 if(isset($_GET['error'])){
 
-echo "<p class='error'>Invalid Username or Password</p>";
+?>
+
+<div class="alert alert-danger">
+
+Invalid Username or Password.
+
+</div>
+
+<?php
 
 }
 
@@ -102,25 +116,57 @@ echo "<p class='error'>Invalid Username or Password</p>";
 
 <form action="authenticate.php" method="POST">
 
+<div class="mb-3">
+
+<label>
+
+Username
+
+</label>
+
 <input
+
 type="text"
+
 name="username"
-placeholder="Username"
+
+class="form-control"
+
 required>
+
+</div>
+
+<div class="mb-4">
+
+<label>
+
+Password
+
+</label>
 
 <input
+
 type="password"
+
 name="password"
-placeholder="Password"
+
+class="form-control"
+
 required>
 
-<button type="submit">
+</div>
+
+<button
+
+class="btn btn-success w-100">
 
 Login
 
 </button>
 
 </form>
+
+</div>
 
 </div>
 

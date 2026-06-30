@@ -1,79 +1,100 @@
 <?php
 
-session_start();
+include "includes/auth.php";
+include "config/database.php";
 
-if(!isset($_SESSION['admin'])){
+$totalEmployees = mysqli_num_rows(
+mysqli_query($conn,
+"SELECT * FROM employees WHERE deleted=0"));
 
-header("Location: login.php");
-exit();
-
-}
+include "includes/header.php";
+include "includes/sidebar.php";
 
 ?>
 
-<!DOCTYPE html>
+<div class="topbar">
 
-<html>
+<h2>
 
-<head>
+Dashboard
 
-<title>Dashboard</title>
-
-<link rel="stylesheet" href="css/style.css">
-
-<style>
-
-body{
-
-font-family:Arial;
-background:#f4f6f9;
-
-}
-
-.header{
-
-background:#0f766e;
-padding:20px;
-color:white;
-display:flex;
-justify-content:space-between;
-align-items:center;
-
-}
-
-.content{
-
-padding:30px;
-
-}
-
-a{
-
-color:white;
-text-decoration:none;
-
-}
-
-</style>
-
-</head>
-
-<body>
-
-<div class="header">
-
-<h2>Employee Management System</h2>
+</h2>
 
 <div>
 
 Welcome,
-<?php echo $_SESSION['admin']; ?>
 
-|
+<span class="username">
 
-<a href="logout.php">
+<?php echo htmlspecialchars($_SESSION['username']); ?>
 
-Logout
+</span>
+
+</div>
+
+</div>
+
+<div class="row">
+
+<div class="col-md-4">
+
+<div class="card dashboard-card">
+
+<div class="dashboard-icon">
+
+<i class="bi bi-people-fill"></i>
+
+</div>
+
+<h5>Total Employees</h5>
+
+<h2>
+
+<?php echo $totalEmployees; ?>
+
+</h2>
+
+</div>
+
+</div>
+
+<div class="col-md-4">
+
+<a href="add_employee.php"
+class="text-decoration-none text-dark">
+
+<div class="card dashboard-card">
+
+<div class="dashboard-icon">
+
+<i class="bi bi-person-plus-fill"></i>
+
+</div>
+
+<h5>Add Employee</h5>
+
+</div>
+
+</a>
+
+</div>
+
+<div class="col-md-4">
+
+<a href="employees.php"
+class="text-decoration-none text-dark">
+
+<div class="card dashboard-card">
+
+<div class="dashboard-icon">
+
+<i class="bi bi-table"></i>
+
+</div>
+
+<h5>Manage Employees</h5>
+
+</div>
 
 </a>
 
@@ -81,12 +102,8 @@ Logout
 
 </div>
 
-<div class="content">
+<?php
 
-<?php include "index.php"; ?>
+include "includes/footer.php";
 
-</div>
-
-</body>
-
-</html>
+?>

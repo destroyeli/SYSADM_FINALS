@@ -1,12 +1,43 @@
 <?php
+
+/*
+|--------------------------------------------------------------------------
+| Database Configuration
+|--------------------------------------------------------------------------
+|
+| Change these values only if your MySQL configuration is different.
+|
+*/
+
 $host = "localhost";
-$user = "root";
+$username = "root";
 $password = "";
 $database = "employee_database";
 
-$conn = mysqli_connect($host, $user, $password, $database);
+/*
+|--------------------------------------------------------------------------
+| Create Connection
+|--------------------------------------------------------------------------
+*/
 
-if (!$conn) {
-    die("Connection Failed: " . mysqli_connect_error());
+$conn = new mysqli($host, $username, $password, $database);
+
+/*
+|--------------------------------------------------------------------------
+| Check Connection
+|--------------------------------------------------------------------------
+*/
+
+if ($conn->connect_error) {
+    die("Database Connection Failed: " . $conn->connect_error);
 }
+
+/*
+|--------------------------------------------------------------------------
+| Set Character Encoding
+|--------------------------------------------------------------------------
+*/
+
+$conn->set_charset("utf8mb4");
+
 ?>

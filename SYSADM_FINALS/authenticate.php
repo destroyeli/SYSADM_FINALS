@@ -4,20 +4,38 @@ session_start();
 
 include "config/database.php";
 
-$username = mysqli_real_escape_string($conn,$_POST['username']);
+$username = trim($_POST['username']);
 $password = $_POST['password'];
 
-$sql = "SELECT * FROM admins WHERE username='$username'";
+$stmt = $conn->prepare(
 
-$result = mysqli_query($conn,$sql);
+"SELECT id,username,password
 
-if(mysqli_num_rows($result)==1){
+FROM admins
 
-$admin = mysqli_fetch_assoc($result);
+WHERE username=?"
+
+);
+
+$stmt->bind_param("s",$username);
+
+$stmt->execute();
+
+$result = $stmt->get_result();
+
+if($result->num_rows==1){
+
+$admin = $result->fetch_assoc();
 
 if(password_verify($password,$admin['password'])){
 
-$_SESSION['admin']=$admin['username'];
+session_regenerate_id(true);
+
+$_SESSION['admin_id']=$admin['id'];
+
+$_SESSION['username']=$admin['username'];
+
+$_SESSION['LAST_ACTIVITY']=time();
 
 header("Location: dashboard.php");
 
@@ -28,5 +46,7 @@ exit();
 }
 
 header("Location: login.php?error=1");
+
+exit();
 
 ?>
